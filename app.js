@@ -1,11 +1,13 @@
 const express = require('express');
 const app = express();
+const morgan = require('morgan')
 const logger = require('./logger')
 const authorize = require('./authorize');
 
 
 // req ==> middleware ==> res
-app.use([authorize, logger]) /* This is used to pass middleware to all the routes */
+// app.use([authorize, logger]) /* This is used to pass middleware to all the routes */
+app.use(morgan('tiny'))
 
 app.get('/', (req, res) => {
     res.send("Home")
